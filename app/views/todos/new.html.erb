@@ -1,0 +1,16 @@
+<%= form_for @todo do |form| %>
+<% if @todo.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>There are <%= pluralize(@todo.errors.count, "error") %>.</h4>
+      <ul>
+        <% @todo.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form_group_tag(@todo.errors[:description]) do %>
+  <%= form.text_field :description, placeholder: 'Description' %>
+  <% end %>
+  <%= form.submit 'Save' %>
+<% end %>
