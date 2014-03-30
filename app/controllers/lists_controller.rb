@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   def index
+    @lists = List.all
   end
 
   def new
@@ -9,7 +10,8 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     if @list.save
-    redirect_to @list, notice: 'Your new List was saved'
+    flash[:success] = 'Your new List was saved'
+    redirect_to @list
     else
     flash[:error] = "Error creating list. Please try again."
     render :new
@@ -17,7 +19,9 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = List.find params[:id]
+    @list = List.find(params[:id])
+    @todos = @list.todos
+    @todo = Todo.new
   end
 
   def edit
