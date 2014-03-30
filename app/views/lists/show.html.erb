@@ -1,0 +1,23 @@
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+        <td colspan="3">
+        <b>List Name: <%= @list.name.titleize %></b>
+        </td>
+      </tr>
+      <tr><td colspan="3"><%= link_to " TO-DOs", new_list_todo_path(@list) , type: "button" ,  class: 'btn btn-large btn-info glyphicon glyphicon-plus' %></td>
+      </tr>
+    <tr>
+      <th width="100">Description</th>
+      <th width="100">Days left</th>
+      <th width="100">Complete </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @list.todos.each do |t| %>
+  <tr>
+    <td><%= link_to t.description, [@list, t] %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
