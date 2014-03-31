@@ -1,9 +1,4 @@
 class TodosController < ApplicationController
-  
-  def new
-    @list = List.find(params[:list_id])
-    @todo = Todo.new
-  end
 
   def create
     @list = List.find params[:list_id]

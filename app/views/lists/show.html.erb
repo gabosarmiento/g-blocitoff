@@ -1,4 +1,4 @@
-<table class="table table-striped table-bordered">
+<table class="table table-condensed table-striped">
   <thead>
     <tr>
         <td colspan="2">
@@ -12,8 +12,8 @@
         </td>
       </tr>
     <tr>
-      <th width="100">Description</th>
-      <th width="50">Days left</th>
+      <th>Description</th>
+      <th>Time left before deletion</th>
     </tr>
   </thead>
   <tbody>
@@ -23,12 +23,13 @@
     <tr>
       <td>
          <% if t.status == true %>
-       <li style="color:grey;"> <%= check_box_tag "todos_checkbox[]", t.id %>  <strike><%= t.description %></strike> </li>
+       <span style="color:grey;"> <%= check_box_tag "todos_checkbox[]", t.id %>  <strike><%= t.description %></strike> </span>
         <% else %>
-       <li> <%= check_box_tag  "todos_checkbox[]", t.id %> <%= t.description %>  </li>
+       <%= check_box_tag  "todos_checkbox[]", t.id %> <%= t.description %>
         <% end %>
       </td>
       <td>
+        <%= time_left(t) %>
       </td>
     </tr>
   <% end %>

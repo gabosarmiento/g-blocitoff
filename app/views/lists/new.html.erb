@@ -9,8 +9,8 @@
       </ul>
     </div>
   <% end %>
-  <%= form_group_tag(@list.errors[:name]) do %>
+ 
   <%= form.text_field :name, placeholder: 'Name' %>
-  <% end %>
+  
   <%= form.submit 'Save' %>
 <% end %>

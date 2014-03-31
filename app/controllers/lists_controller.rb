@@ -1,9 +1,6 @@
 class ListsController < ApplicationController
   def index
     @lists = List.all
-  end
-
-  def new
     @list = List.new
   end
 
@@ -14,7 +11,7 @@ class ListsController < ApplicationController
     redirect_to @list
     else
     flash[:error] = "Error creating list. Please try again."
-    render :new
+    render lists_path
     end 
   end
 
@@ -24,12 +21,10 @@ class ListsController < ApplicationController
     @todo = Todo.new
   end
 
-  def edit
-  end
-
   private
   def list_params 
     params.require(:list).permit(:name)
   end
+
 
 end

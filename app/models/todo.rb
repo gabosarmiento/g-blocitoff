@@ -7,5 +7,4 @@ class Todo < ActiveRecord::Base
   def set_incomplete
     self.update_attribute(:status, false)
   end
-
 end
