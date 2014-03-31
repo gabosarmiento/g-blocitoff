@@ -1,33 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>GBlocitoff</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-   <div class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-    <div class="navbar-header">
-      <%= link_to "g-blocitoff", root_path, class: "navbar-brand" %>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "G Blocitoff" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "G Blocitoff" %>">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <div class="container">
+    <main role="main">
+       <%= render 'layouts/messages' %>
+       <%= yield %>
+    </main>
     </div>
-      <ul class="nav navbar-nav navbar-right">
-        <% if current_user %>
-        Hello <%= current_user.email %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-        <% else %>
-        <%= link_to "Sign In", new_user_session_path %> or 
-        <%= link_to "Sign Up", new_user_registration_path %>
-        <% end %>
-        
-      </ul>
-    </div>
-  </div>
-
-  <div class="container">
-
-    <%= render 'layouts/notifications' %>
-    <%= yield %>
-  </div>
-</body>
+  </body>
 </html>

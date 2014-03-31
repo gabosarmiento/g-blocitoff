@@ -43,6 +43,12 @@ gem 'whenever', :require => false
 
 gem 'devise'
 
+gem 'pundit'
+
+group :development do
+  gem 'rails_layout'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

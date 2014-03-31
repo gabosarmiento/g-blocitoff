@@ -1,17 +1,19 @@
-<table class="table table-condensed table-striped">
+<table class="table table-condensed table-striped table-hover">
   <thead>
     <tr>
         <td colspan="2">
-        <b><%= link_to "All Lists", lists_path %> / <%= @list.name.titleize %></b><br/><small>
+        <h4><%= link_to "All Lists", lists_path %> / <%= @list.name.titleize %></h4><small>
         List alive since <%= time_ago_in_words(@list.created_at) %> ago brought to life by its proud father <%= @list.user.email %></small><br/>
         </td>
       </tr>
+      <% if policy(Todo.new).create? %>
       <tr><td colspan="2"><%= form_for [@list, @todo] do |f| %>
-        <%= f.text_field :description %>
-        <%= f.submit "Add todo", class: "btn btn-primary " %>
+        <%= f.text_field :description, placeholder: "Write a new to-do", :autofocus => true  %>
+        <%= f.submit "Add todo", class: "btn btn-primary" %>
         <% end %>
         </td>
       </tr>
+      <% end %>
     <tr>
       <th>Description</th>
       <th>Time left before deletion</th>
@@ -28,6 +30,9 @@
         <% else %>
        <%= check_box_tag  "todos_checkbox[]", t.id %> <%= t.description %>
         <% end %>
+         <% if policy(@todo).destroy? %>
+      <%= link_to "", [@list,t], method: :delete, class: 'btn btn-xs glyphicon glyphicon-trash', confirm: 'Are you sure you want to delete this list?'%>
+    <% end %>
       </td>
       <td>
         <%= time_left(t) %>
@@ -35,7 +40,7 @@
     </tr>
   <% end %>
   <tr><td colspan="2">
-  <%= submit_tag("Complete Todos", :class=>"btn btn-success") %></td></tr>
+  <%= submit_tag("Toggle Todos", :class=>"btn btn-success") %></td></tr>
   <% end %>
   </tbody>
 </table>

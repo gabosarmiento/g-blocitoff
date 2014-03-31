@@ -3,7 +3,7 @@ class Todo < ActiveRecord::Base
   validates :description, presence: true
   after_create :set_incomplete
 
-  default_scope { order('created_at ASC') }
+  default_scope { order('created_at DESC') }
 
   def remove_expired
     @todo = Todo.all

@@ -3,8 +3,8 @@ GBlocitoff::Application.routes.draw do
   devise_for :users
   root :to => "home#index"
   
-  resources :lists, only: [:index, :create, :show] do
-    resources :todos, only: [:create] 
+  resources :lists, only: [:index, :create, :show, :destroy] do
+    resources :todos, only: [:create, :destroy] 
   end
 
   # Custom complete route

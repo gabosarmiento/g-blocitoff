@@ -1,14 +1,18 @@
 <title>Lists </title>
-<h1>My Lists</h1>
+<h2>My Lists</h2>
+<% if policy(List.new).create? %>
 <div>
 <%= form_for @list do |f| %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, placeholder: "Put a name on it", :autofocus => true  %>
   <%= f.submit "Add to-do list", class: "btn btn-primary " %>
     <% end %>
 </div>
+<% end %>
 <div class="well">
 <h4>All my lists here</h4>
 <% @lists.each do |list| %>
-  <li> <%= link_to list.name, list %> </li>
+  <li> <%= link_to list.name, list %> <% if policy(@list).destroy? %>
+      <%= link_to "", list, method: :delete, class: 'btn btn-xs glyphicon glyphicon-trash', confirm: 'Are you sure you want to delete this list?'%>
+    <% end %></li>
 <% end %>
 </div>
