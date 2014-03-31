@@ -2,7 +2,8 @@
   <thead>
     <tr>
         <td colspan="2">
-        <b><%= link_to "Lists", lists_path %> / <%= @list.name.titleize %></b>
+        <b><%= link_to "All Lists", lists_path %> / <%= @list.name.titleize %></b><br/><small>
+        List alive since <%= time_ago_in_words(@list.created_at) %> ago brought to life by its proud father <%= @list.user.email %></small><br/>
         </td>
       </tr>
       <tr><td colspan="2"><%= form_for [@list, @todo] do |f| %>

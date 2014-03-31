@@ -5,7 +5,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(list_params)
+    @list = current_user.lists.build(list_params)
     if @list.save
     flash[:success] = 'Your new List was saved'
     redirect_to @list
